@@ -12,8 +12,8 @@ const NameItem = ({ visibleContacts, onDeleteContact }) => (
 );
 
 NameItem.propTypes = {
-    contacts: PropTypes.array,
-    filterResult: PropTypes.array,
+    visibleContacts: PropTypes.array,
+    onDeleteContact: PropTypes.array,
 }
 
 export default NameItem;
