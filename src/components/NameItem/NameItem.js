@@ -13,7 +13,7 @@ const NameItem = ({ visibleContacts, onDeleteContact }) => (
 
 NameItem.propTypes = {
     visibleContacts: PropTypes.array,
-    onDeleteContact: PropTypes.array,
+    onDeleteContact: PropTypes.func,
 }
 
 export default NameItem;
