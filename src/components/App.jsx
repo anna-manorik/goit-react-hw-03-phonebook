@@ -26,9 +26,6 @@ class App extends Component {
     if (!checkname) {
       const contact = { id: shortid.generate(), name: name, number: number };
       this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
-      // this.setState(prevState => ({
-      //   contacts: [name + ": " + number, ...prevState.contacts],
-      // }))
     } else {
       alert(name + ' is already in contact list');
     }
@@ -58,6 +55,19 @@ class App extends Component {
     }));
   };
 
+  componentDidMount() {
+    if (localStorage) {
+      const currentContactList = JSON.parse(localStorage.getItem('contacts'));
+      this.setState({ contacts: currentContactList });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter } = this.state;
 
@@ -71,8 +81,10 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter changeFilter={this.changeFilter} filter={filter} />
-        <NameList visibleContacts={visibleContacts} onDeleteContact={this.deleteContact} />
-         
+        <NameList
+          visibleContacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </>
     );
   }
