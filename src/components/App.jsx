@@ -71,12 +71,8 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter changeFilter={this.changeFilter} filter={filter} />
-        <NameList>
-          <NameItem
-            visibleContacts={visibleContacts}
-            onDeleteContact={this.deleteContact}
-          />
-        </NameList>
+        <NameList visibleContacts={visibleContacts} onDeleteContact={this.deleteContact} />
+         
       </>
     );
   }
