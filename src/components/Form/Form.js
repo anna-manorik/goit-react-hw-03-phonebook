@@ -5,7 +5,6 @@ import styles from './form.module.css';
 const Form = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <label>
-      {' '}
       Name:
       <input
         className={styles.input}
@@ -18,7 +17,6 @@ const Form = ({ handleSubmit }) => (
     </label>
     <br />
     <label>
-      {' '}
       Phone num:
       <input
         className={styles.input}
