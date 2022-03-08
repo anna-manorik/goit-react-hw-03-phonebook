@@ -56,7 +56,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage) {
+    if (localStorage.getItem('contacts')) {
       const currentContactList = JSON.parse(localStorage.getItem('contacts'));
       this.setState({ contacts: currentContactList });
     }
@@ -72,7 +72,6 @@ class App extends Component {
     const { filter } = this.state;
 
     const visibleContacts = this.getVisibleContacts();
-    console.log(visibleContacts);
 
     return (
       <>
