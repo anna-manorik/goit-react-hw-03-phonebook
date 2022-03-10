@@ -8,29 +8,27 @@ import shortid from 'shortid';
 class App extends Component {
   state = {
     contacts: [],
-    id: '',
-    name: '',
-    number: '',
     filter: '',
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const name = form.elements.name.value;
-    const number = form.elements.number.value;
+  handleSubmitForm = state => {
+    
     const checkname = this.state.contacts.find(contact =>
-      contact.name.toLowerCase().includes(name.toLowerCase())
+      contact.name.toLowerCase().includes(state.name.toLowerCase())
     );
 
     if (!checkname) {
-      const contact = { id: shortid.generate(), name: name, number: number };
+      const contact = { id: shortid.generate(), name: state.name, number: state.number };
       this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
     } else {
-      alert(name + ' is already in contact list');
+      alert(state.name + ' is already in contact list');
     }
 
-    this.reset(form);
+    // console.log('state', state);
+
+    // const contact = { id: shortid.generate(), name: state.name, number: state.number };
+    //   this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
+
   };
 
   getVisibleContacts = () => {
@@ -39,11 +37,6 @@ class App extends Component {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-
-  reset(form) {
-    form.elements.name.value = '';
-    form.elements.number.value = '';
-  }
 
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
@@ -76,7 +69,7 @@ class App extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-        <Form handleSubmit={this.handleSubmit} />
+        <Form onSubmit={this.handleSubmitForm} />
 
         <h2>Contacts</h2>
         <Filter changeFilter={this.changeFilter} filter={filter} />
