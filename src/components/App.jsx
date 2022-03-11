@@ -24,11 +24,6 @@ class App extends Component {
       alert(state.name + ' is already in contact list');
     }
 
-    // console.log('state', state);
-
-    // const contact = { id: shortid.generate(), name: state.name, number: state.number };
-    //   this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
-
   };
 
   getVisibleContacts = () => {
